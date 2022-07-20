@@ -11,7 +11,7 @@ async function processVideo({ chuckNum, ffmpeg, startTime, chuckSize, fileName, 
   const fadedName = 'faded.' + fileExt;
 
   await ffmpeg.run(
-      '-ss', `00:00:${(0==(startTime + (chuckNum  ) * chuckSize))?'00':startTime + (chuckNum  ) * chuckSize}`,
+      '-ss', `00:00:${(0===(startTime + (chuckNum  ) * chuckSize))?'00':startTime + (chuckNum  ) * chuckSize}`,
       '-to', `00:00:${startTime + (chuckNum+1) * chuckSize}`,
       // '-ss', `00:00:0${startTime}`,
       // '-to', `00:00:0${startTime + chuckSize}`,
