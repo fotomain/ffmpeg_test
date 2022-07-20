@@ -30,8 +30,10 @@ function App() {
   const [videoSrcChunks, setVideoSrcChunks] = useState([]);
 
 
-  const ffmpeg = createFFmpeg({ log: true,
-    corePath: "https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js"
+  const ffmpeg = createFFmpeg({
+    log: true,
+    corePath: "https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js",
+    mainName: "main",
     }
   );
   //
