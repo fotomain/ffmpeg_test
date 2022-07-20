@@ -54,7 +54,7 @@ function App() {
     setMessage('Start transcoding');
     ffmpeg.FS('writeFile', fileName, await fetchFile(video));
     const chunks = [];
-    const len = 5;
+    const len = 3;
     let startTime = 0;
     for (let i = 0; i < len; i ++) {
       setMessage(`Progress: ${i + 1}/${len}`);
@@ -68,7 +68,7 @@ function App() {
       }));
       // startTime += 20;
     }
-    setMessage('Complete transcoding');
+    setMessage('Complete transcoding !');
     setVideoSrcChunks(chunks);
   };
 
@@ -86,7 +86,7 @@ function App() {
         { video && <button onClick={doTranscode}>Start</button> }
         <p>{message}</p>
         <br/>
-        { videoSrcChunks.map((src, index) => <video download:{"file_" + Date.now().toString()} key={index} width="250" src={src} controls></video>) }
+        { videoSrcChunks.map((src, index) => <video download={"file_" + Date.now().toString()+'_'+index.toString()} key={index} width="250" src={src} controls></video>) }
       </div>
   );
 }
