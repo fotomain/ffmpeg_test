@@ -6,13 +6,13 @@ import './App.css';
 
 
 
-async function processVideo({ ffmpeg, startTime, chuckSize, fileName, fileExt }) {
+async function processVideo({ chuckNum, ffmpeg, startTime, chuckSize, fileName, fileExt }) {
   const trimedName = 'trimmed.' + fileExt;
   const fadedName = 'faded.' + fileExt;
 
   await ffmpeg.run(
-      '-ss', `00:00:${startTime}`,
-      '-to', `00:00:${startTime + chuckSize}`,
+      '-ss', `00:00:${(0==(startTime + (chuckNum  ) * chuckSize))?'00':startTime + (chuckNum  ) * chuckSize}`,
+      '-to', `00:00:${startTime + (chuckNum+1) * chuckSize}`,
       // '-ss', `00:00:0${startTime}`,
       // '-to', `00:00:0${startTime + chuckSize}`,
       '-i', fileName,
@@ -59,13 +59,14 @@ function App() {
     for (let i = 0; i < len; i ++) {
       setMessage(`Progress: ${i + 1}/${len}`);
       chunks.push(await processVideo({
+        chuckNum:i,
         fileName,
         fileExt,
         startTime,
-        chuckSize: 20,
+        chuckSize: 10,
         ffmpeg,
       }));
-      startTime += 20;
+      // startTime += 20;
     }
     setMessage('Complete transcoding');
     setVideoSrcChunks(chunks);
