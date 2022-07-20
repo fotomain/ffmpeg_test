@@ -86,7 +86,18 @@ function App() {
         { video && <button onClick={doTranscode}>Start</button> }
         <p>{message}</p>
         <br/>
+
         { videoSrcChunks.map((src, index) => <video download={"file_" + Date.now().toString()+'_'+index.toString()} key={index} width="250" src={src} controls></video>) }
+
+        <br/>
+
+        { videoSrcChunks.map((src, index) =>
+            <a href={src} key={index} download={"file_" + Date.now().toString()+'_'+index.toString()} >
+              <video width="250" src={src} controls></video>
+            </a>
+          )
+        }
+
       </div>
   );
 }
