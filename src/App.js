@@ -11,8 +11,10 @@ async function processVideo({ ffmpeg, startTime, chuckSize, fileName, fileExt })
   const fadedName = 'faded.' + fileExt;
 
   await ffmpeg.run(
-      '-ss', `00:00:0${startTime}`,
-      '-to', `00:00:0${startTime + chuckSize}`,
+      '-ss', `00:00:${startTime}`,
+      '-to', `00:00:${startTime + chuckSize}`,
+      // '-ss', `00:00:0${startTime}`,
+      // '-to', `00:00:0${startTime + chuckSize}`,
       '-i', fileName,
       // '-vf', 'fade=t=in:st=0:d=1',
       '-c', 'copy', trimedName
