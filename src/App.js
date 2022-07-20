@@ -22,7 +22,7 @@ async function processVideo({ chuckNum, ffmpeg, startTime, chuckSize, fileName, 
   await ffmpeg.run('-i', trimedName, '-vf', `fade=t=in:st=0:d=0.5,fade=t=out:st=${chuckSize - 0.5}:d=0.5`, '-c:a', 'copy', fadedName);
   const data = ffmpeg.FS('readFile', fadedName);
 
-  return URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }));
+  return URL.createObjectURL(new Blob([data.buffer], { name:"file_"+Date.now().toString(), type: 'video/mp4' }));
 }
 
 function App() {
