@@ -92,7 +92,7 @@ function App() {
         <br/>
 
         { videoSrcChunks.map((src, index) =>
-            <a href={src} key={index} download={"file_" + Date.now().toString()+'_'+index.toString()} >
+            <a href={src} key={index} download={"file_USE_VLC_player!!!_" + Date.now().toString()+'_'+index.toString()} >
               <video width="250" src={src} controls></video>
               Download {index}
             </a>
