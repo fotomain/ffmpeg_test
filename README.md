@@ -1,3 +1,9 @@
+# This project works on Netlify.com
+
+https://best-ffmpeg-test.netlify.app/ 
++ do file: netlify.toml
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
