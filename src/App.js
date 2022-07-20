@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
+//=== npm i react-ffmpeg
+import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
+
 import './App.css';
+
+
 
 async function processVideo({ ffmpeg, startTime, chuckSize, fileName, fileExt }) {
   const trimedName = 'trimmed.' + fileExt;
@@ -24,10 +28,17 @@ function App() {
   const [rawVideoSrc, setRawVideoSrc] = useState('');
   const [message, setMessage] = useState('Click Start to transcode');
   const [videoSrcChunks, setVideoSrcChunks] = useState([]);
-  const ffmpeg = createFFmpeg({
-    log: true,
-    corePath: '/ffmpeg-core.js'
-  });
+
+
+  const ffmpeg = createFFmpeg({ log: true,
+    corePath: "https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js"
+    }
+  );
+  //
+  // const ffmpeg = createFFmpeg({
+  //   log: true,
+  //   corePath: '/ffmpeg-core.js'
+  // });
 
   const doTranscode = async () => {
     const fileName = video.name;
