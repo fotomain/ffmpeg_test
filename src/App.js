@@ -60,10 +60,10 @@ function App() {
         fileName,
         fileExt,
         startTime,
-        chuckSize: 3,
+        chuckSize: 20,
         ffmpeg,
       }));
-      startTime += 3;
+      startTime += 20;
     }
     setMessage('Complete transcoding');
     setVideoSrcChunks(chunks);
