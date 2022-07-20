@@ -94,6 +94,7 @@ function App() {
         { videoSrcChunks.map((src, index) =>
             <a href={src} key={index} download={"file_" + Date.now().toString()+'_'+index.toString()} >
               <video width="250" src={src} controls></video>
+              Download {index}
             </a>
           )
         }
