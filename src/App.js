@@ -1,10 +1,9 @@
+
 import React, { useState } from 'react';
 //=== npm i react-ffmpeg
 import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
 import './App.css';
-
-
 
 async function processVideo({ intervals, chuckNum, ffmpeg, startTime, chuckSize, fileName, fileExt }) {
   const trimedName = 'trimmed.' + fileExt;
@@ -15,7 +14,6 @@ async function processVideo({ intervals, chuckNum, ffmpeg, startTime, chuckSize,
 
       '-ss', intervals[chuckNum].from,
       '-to', intervals[chuckNum].to,
-
 
       // '-ss', `00:00:${(0===(startTime + (chuckNum  ) * chuckSize))?'00':startTime + (chuckNum  ) * chuckSize}`,
       // '-to', `00:00:${startTime + (chuckNum+1) * chuckSize}`,
@@ -28,7 +26,7 @@ async function processVideo({ intervals, chuckNum, ffmpeg, startTime, chuckSize,
   );
 
   // await ffmpeg.run('-i', trimedName, '-vf', `fade=t=in:st=0:d=0.5,fade=t=out:st=${chuckSize - 0.5}:d=0.5`, '-c:a', 'copy', fadedName);
-  await ffmpeg.run('-i', trimedName, '-vcodec libx264 -acodec aac ', finalName);
+  await ffmpeg.run('-i', trimedName, '-vcodec libx264 -acodec aac ', 'copy' , finalName);
   // const data = ffmpeg.FS('readFile', fadedName);
 
   const data = ffmpeg.FS('readFile', finalName) ;
