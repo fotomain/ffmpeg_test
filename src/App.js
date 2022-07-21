@@ -62,12 +62,12 @@ function App() {
     console.log('[x] videoName', fileName, video);
     setMessage('Loading ffmpeg-core.js');
     await ffmpeg.load();
-    setMessage('Start transcoding');
+    setMessage('Start transcoding  ');
     ffmpeg.FS('writeFile', fileName, await fetchFile(video));
     const chunks = [];
     const intervals = [
       {from:'00:00:02',to:'00:19:08'},
-      {from:'00:19:08',to:'00:30:36'}
+      {from:'00:19:11',to:'00:30:36'}
     ];
     // const intervals = [
     //   {from:'00:00:02',to:'00:00:08'},
