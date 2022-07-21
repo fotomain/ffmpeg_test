@@ -109,13 +109,14 @@ function App() {
         <p>{message}</p>
         <br/>
 
-        { videoSrcChunks.map((src, index) => <video download={"file_" + Date.now().toString()+'_'+index.toString()} key={index} width="250" src={src} controls></video>) }
+        {/*=== { videoSrcChunks.map((src, index) => <video download={"file_" + Date.now().toString()+'_'+index.toString()} key={index} width="250" src={src} controls></video>) }*/}
 
         <br/>
 
         { videoSrcChunks.map((src, index) =>
-            <a href={src} key={index} download={"file_USE_VLC_player!!!_" + Date.now().toString()+'_'+index.toString()} >
+            <a href={src} key={index} download={"file_USE_VLC_player!!!__" + Date.now().toString()+'_'+index.toString()} >
               <video width="250" src={src} controls></video>
+              <br/>
               Download {index}
             </a>
           )
