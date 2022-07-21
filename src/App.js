@@ -6,13 +6,19 @@ import './App.css';
 
 
 
-async function processVideo({ chuckNum, ffmpeg, startTime, chuckSize, fileName, fileExt }) {
+async function processVideo({ intervals, chuckNum, ffmpeg, startTime, chuckSize, fileName, fileExt }) {
   const trimedName = 'trimmed.' + fileExt;
   const fadedName = 'faded.' + fileExt;
 
   await ffmpeg.run(
-      '-ss', `00:00:${(0===(startTime + (chuckNum  ) * chuckSize))?'00':startTime + (chuckNum  ) * chuckSize}`,
-      '-to', `00:00:${startTime + (chuckNum+1) * chuckSize}`,
+
+      '-ss', intervals[chuckNum].from,
+      '-to', intervals[chuckNum].to,
+
+
+      // '-ss', `00:00:${(0===(startTime + (chuckNum  ) * chuckSize))?'00':startTime + (chuckNum  ) * chuckSize}`,
+      // '-to', `00:00:${startTime + (chuckNum+1) * chuckSize}`,
+
       // '-ss', `00:00:0${startTime}`,
       // '-to', `00:00:0${startTime + chuckSize}`,
       '-i', fileName,
@@ -54,11 +60,21 @@ function App() {
     setMessage('Start transcoding');
     ffmpeg.FS('writeFile', fileName, await fetchFile(video));
     const chunks = [];
-    const len = 3;
+    // const intervals = [
+    //   {from:'00:00:02',to:'00:19:08'},
+    //   {from:'00:19:08',to:'00:30:36'}
+    // ];
+    const intervals = [
+      {from:'00:00:02',to:'00:05:08'},
+      {from:'00:05:09',to:'00:07:00'}
+    ];
+
+    const len = 2;
     let startTime = 0;
     for (let i = 0; i < len; i ++) {
       setMessage(`Progress: ${i + 1}/${len}`);
       chunks.push(await processVideo({
+        intervals,
         chuckNum:i,
         fileName,
         fileExt,
