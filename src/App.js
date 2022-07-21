@@ -75,10 +75,10 @@ function App() {
       {from:'00:00:16',to:'00:00:20'},
     ];
 
-    const len = 2;
+    const n_intervals = 3;
     let startTime = 0;
-    for (let i = 0; i < len; i ++) {
-      setMessage(`Progress: ${i + 1}/${len}`);
+    for (let i = 0; i < (n_intervals-1); i ++) {
+      setMessage(`Progress: ${i + 1}/${n_intervals}`);
       chunks.push(await processVideo({
         intervals,
         chuckNum:i,
