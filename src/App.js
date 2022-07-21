@@ -8,6 +8,7 @@ import './App.css';
 
 async function processVideo({ intervals, chuckNum, ffmpeg, startTime, chuckSize, fileName, fileExt }) {
   const trimedName = 'trimmed.' + fileExt;
+  const finalName = 'final.' + fileExt;
   // const fadedName = 'faded.' + fileExt;
 
   await ffmpeg.run(
@@ -27,9 +28,10 @@ async function processVideo({ intervals, chuckNum, ffmpeg, startTime, chuckSize,
   );
 
   // await ffmpeg.run('-i', trimedName, '-vf', `fade=t=in:st=0:d=0.5,fade=t=out:st=${chuckSize - 0.5}:d=0.5`, '-c:a', 'copy', fadedName);
+  await ffmpeg.run('-i', trimedName, '-vcodec libx264 -acodec aac ', finalName);
   // const data = ffmpeg.FS('readFile', fadedName);
 
-  const data = ffmpeg.FS('readFile', trimedName) ;
+  const data = ffmpeg.FS('readFile', finalName) ;
 
   return URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }));
 
