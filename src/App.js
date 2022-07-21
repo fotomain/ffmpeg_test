@@ -77,7 +77,7 @@ function App() {
 
     const n_intervals = 3;
     let startTime = 0;
-    for (let ii = 0; ii < (n_intervals-1); ii ++) {
+    for (let ii = 0; ii < (n_intervals); ii ++) {
       console.log("============== ii ", ii)
       setMessage(`Progress: ${ii + 1}/${n_intervals}`);
       chunks.push(await processVideo({
