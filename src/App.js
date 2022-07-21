@@ -8,7 +8,7 @@ import './App.css';
 
 async function processVideo({ intervals, chuckNum, ffmpeg, startTime, chuckSize, fileName, fileExt }) {
   const trimedName = 'trimmed.' + fileExt;
-  const fadedName = 'faded.' + fileExt;
+  // const fadedName = 'faded.' + fileExt;
 
   await ffmpeg.run(
 
