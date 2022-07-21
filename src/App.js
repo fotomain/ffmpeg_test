@@ -77,20 +77,21 @@ function App() {
 
     const n_intervals = 3;
     let startTime = 0;
-    for (let i = 0; i < (n_intervals-1); i ++) {
-      setMessage(`Progress: ${i + 1}/${n_intervals}`);
+    for (let ii = 0; ii < (n_intervals-1); ii ++) {
+      console.log("============== ii ", ii)
+      setMessage(`Progress: ${ii + 1}/${n_intervals}`);
       chunks.push(await processVideo({
         intervals,
-        chuckNum:i,
+        chuckNum:ii,
         fileName,
         fileExt,
         startTime,
-        chuckSize: 10,
+        // chuckSize: 10,
         ffmpeg,
       }));
       // startTime += 20;
     }
-    setMessage('Complete transcoding !');
+    setMessage('Complete transcoding !' + chunks.length.toString());
     setVideoSrcChunks(chunks);
   };
 
@@ -114,7 +115,7 @@ function App() {
         <br/>
 
         { videoSrcChunks.map((src, index) =>
-            <a href={src} key={index} download={"file_USE_VLC_player!!!__" + Date.now().toString()+'_'+index.toString()} >
+            <a href={src} key={index+1} download={"file_USE_VLC_player!!!__" + Date.now().toString()+'_'+index.toString()} >
               <video width="250" src={src} controls></video>
               <br/>
               Download {index}
