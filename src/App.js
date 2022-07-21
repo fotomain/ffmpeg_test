@@ -22,7 +22,8 @@ async function processVideo({ intervals, chuckNum, ffmpeg, startTime, chuckSize,
       // '-to', `00:00:0${startTime + chuckSize}`,
       '-i', fileName,
       // '-vf', 'fade=t=in:st=0:d=1',
-      '-c', 'copy', trimedName
+      // '-c', 'copy', trimedName
+      '-c:v libx264 -c:a aac -strict experimental -b:a 128k', trimedName
   );
 
   // await ffmpeg.run('-i', trimedName, '-vf', `fade=t=in:st=0:d=0.5,fade=t=out:st=${chuckSize - 0.5}:d=0.5`, '-c:a', 'copy', fadedName);
