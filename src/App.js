@@ -25,10 +25,13 @@ async function processVideo({ intervals, chuckNum, ffmpeg, startTime, chuckSize,
       // '-vf', 'fade=t=in:st=0:d=1',
       '-c', 'copy', trimedName
   );
-  await ffmpeg.run('-i', trimedName, '-vf', `fade=t=in:st=0:d=0.5,fade=t=out:st=${chuckSize - 0.5}:d=0.5`, '-c:a', 'copy', fadedName);
+
+  // await ffmpeg.run('-i', trimedName, '-vf', `fade=t=in:st=0:d=0.5,fade=t=out:st=${chuckSize - 0.5}:d=0.5`, '-c:a', 'copy', fadedName);
+
   const data = ffmpeg.FS('readFile', fadedName);
 
   return URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }));
+
 }
 
 function App() {
