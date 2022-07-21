@@ -65,17 +65,17 @@ function App() {
     setMessage('Start transcoding');
     ffmpeg.FS('writeFile', fileName, await fetchFile(video));
     const chunks = [];
-    // const intervals = [
-    //   {from:'00:00:02',to:'00:19:08'},
-    //   {from:'00:19:08',to:'00:30:36'}
-    // ];
     const intervals = [
-      {from:'00:00:02',to:'00:00:08'},
-      {from:'00:00:09',to:'00:00:15'},
-      {from:'00:00:16',to:'00:00:20'},
+      {from:'00:00:02',to:'00:19:08'},
+      {from:'00:19:08',to:'00:30:36'}
     ];
+    // const intervals = [
+    //   {from:'00:00:02',to:'00:00:08'},
+    //   {from:'00:00:09',to:'00:00:15'},
+    //   {from:'00:00:16',to:'00:00:20'},
+    // ];
 
-    const n_intervals = 3;
+    const n_intervals = 2;
     let startTime = 0;
     for (let ii = 0; ii < (n_intervals); ii ++) {
       console.log("============== ii ", ii)
