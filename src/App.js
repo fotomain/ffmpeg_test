@@ -68,7 +68,7 @@ function App() {
     const chunks = [];
     const intervals = [
       {from:'00:00:02',to:'00:19:08'},
-      {from:'00:19:14',to:'00:30:36'}
+      {from:'00:19:14',to:'00:29:40'}
     ];
     // const intervals = [
     //   {from:'00:00:02',to:'00:00:08'},
